@@ -32,6 +32,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Check if we're on the chat page
+    if (document.getElementById('chat-page')) {
+        // Function to fetch messages from the backend
+        function fetchMessages() {
+            fetch('https://kannan-bot-backend.onrender.com/messages') // Replace with your backend URL after deployment
+                .then(response => response.json())
+                .then(messages => {
+                    const chatContainer = document.getElementById('chat-messages');
+                    chatContainer.innerHTML = ''; // Clear existing messages
+                    messages.forEach(msg => {
+                        const messageDiv = document.createElement('div');
+                        messageDiv.className = 'chat-message left';
+                        messageDiv.innerHTML = `<div class="message">${msg.text}</div>`;
+                        chatContainer.appendChild(messageDiv);
+                    });
+                })
+                .catch(error => console.error('Error fetching messages:', error));
+        }
+
+        // Fetch messages every 5 seconds
+        fetchMessages(); // Initial fetch
+        setInterval(fetchMessages, 5000); // Poll every 5 seconds
+    }
 });
 
 // Answer Checking
