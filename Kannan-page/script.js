@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('chat-page')) {
         // Function to fetch messages from the backend
         function fetchMessages() {
-            fetch('https://kannan-bot-backend.onrender.com/messages') // Replace with your backend URL after deployment
+            fetch('https://yemmy-backened.onrender.com') // Replace with your backend URL after deployment
                 .then(response => response.json())
                 .then(messages => {
                     const chatContainer = document.getElementById('chat-messages');
